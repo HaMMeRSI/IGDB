@@ -165,7 +165,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Recent Games" id="fno-vP-d4b"/>
                     <connections>
-                        <segue destination="5xG-9E-FtL" kind="show" id="Bx8-HT-Abz"/>
+                        <segue destination="5xG-9E-FtL" kind="show" identifier="showDetails" id="Bx8-HT-Abz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Pq-vI-LwA" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -4,8 +4,8 @@ class GameDetailsViewController: UIViewController {
     var gameNameText:String?{
         didSet{
             if let gameNameText = gameNameText {
-                if (gameName != nil){
-                    gameName.text = gameNameText
+                if (GameName != nil){
+                    GameName.text = gameNameText
                 }
             }
         }
@@ -17,8 +17,8 @@ class GameDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let gameNameText = gameNameText{
-            gameName.text = gameNameText
+        if let gameNameText = gameNameText {
+            GameName.text = gameNameText
         }        // Do any additional setup after loading the view.
     }
 
