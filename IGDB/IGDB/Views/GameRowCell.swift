@@ -2,8 +2,8 @@ import UIKit
 
 class GameRowCell: UITableViewCell {
     
-    @IBOutlet weak var GameID: UILabel!
     @IBOutlet weak var GameName: UILabel!
+    @IBOutlet weak var GameScore: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
     
     

@@ -1,41 +1,52 @@
 import UIKit
 
 class GameDetailsViewController: UIViewController {
-    var gameNameText:String?{
-        didSet{
-            if let gameNameText = gameNameText {
+    var game:Game? {
+        didSet {
+            if let game = game {
                 if (GameName != nil){
-                    GameName.text = gameNameText
+                    GameName.text = game.name
+                }
+                
+                if (GameGenre != nil){
+                    GameGenre.text = game.genre
+                }
+                
+                if (GameDescription != nil){
+                    GameDescription.text = game.description
+                }
+                
+                if (GameImage != nil){
+                    GameImage.image = UIImage(named: game.image)
+                }
+                
+                if (GameScore != nil){
+                    GameScore.text = String(game.score)
                 }
             }
         }
     }
     
-    @IBOutlet weak var GameID: UILabel!
+    
     @IBOutlet weak var GameName: UILabel!
+    @IBOutlet weak var GameGenre: UILabel!
+    @IBOutlet weak var GameDescription: UITextView!
+    @IBOutlet weak var GameScore: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let gameNameText = gameNameText {
-            GameName.text = gameNameText
-        }        // Do any additional setup after loading the view.
+        if let game = game {
+            GameName.text = game.name
+            GameGenre.text = game.genre
+            GameDescription.text = game.description
+            GameImage.image = UIImage(named: game.image)
+            GameScore.text = String(game.score)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

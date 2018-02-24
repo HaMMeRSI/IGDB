@@ -1,7 +1,9 @@
 import UIKit
 
 class GameTableViewController: UITableViewController {
-    let data = ["first","second","third","forfth","first","second","third","forfth"]
+    
+    let data: [Game] = [Game()]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +30,9 @@ class GameTableViewController: UITableViewController {
 
         let content = data[indexPath.row]
 
-        cell.GameName.text = content
+        cell.GameName.text = content.name
+        cell.GameScore.text = String(content.score)
+        cell.GameImage.image = UIImage(named: content.image)
         return cell
     }
     
@@ -36,7 +40,7 @@ class GameTableViewController: UITableViewController {
         if (segue.identifier == "showDetails"){
             let gameViewController:GameDetailsViewController = segue.destination as! GameDetailsViewController
             let content = data[selctedRow!];
-            gameViewController.gameNameText = content
+            gameViewController.game = content
         }
         
     }
