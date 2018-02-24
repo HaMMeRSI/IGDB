@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5BDA5EF13E78725FE1227B5 /* Pods_IGDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8C325FDBA819C4ED9B3D92 /* Pods_IGDB.framework */; };
 		F84843982040387100112067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843972040387100112067 /* AppDelegate.swift */; };
 		F848439A2040387100112067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843992040387100112067 /* ViewController.swift */; };
 		F848439D2040387100112067 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848439B2040387100112067 /* Main.storyboard */; };
@@ -16,9 +17,15 @@
 		F84843B120405A4100112067 /* GameRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843B020405A4100112067 /* GameRowCell.swift */; };
 		F84843B5204074B800112067 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843B4204074B800112067 /* Game.swift */; };
 		F84843B72040788D00112067 /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843B62040788D00112067 /* GameDetailsViewController.swift */; };
+		F8728E9E20419116002983A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8728E9D20419116002983A3 /* GoogleService-Info.plist */; };
+		F8728EA020419942002983A3 /* FireBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8728E9F20419942002983A3 /* FireBaseModel.swift */; };
+		F8FA179E2041A51000B45E76 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FA179D2041A51000B45E76 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B7619C5E5A4EBBB6D972CB7 /* Pods-IGDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IGDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IGDB/Pods-IGDB.debug.xcconfig"; sourceTree = "<group>"; };
+		6F8C325FDBA819C4ED9B3D92 /* Pods_IGDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IGDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE60256BA093B1C47FD3881B /* Pods-IGDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IGDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-IGDB/Pods-IGDB.release.xcconfig"; sourceTree = "<group>"; };
 		F84843942040387100112067 /* IGDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IGDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84843972040387100112067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F84843992040387100112067 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +37,9 @@
 		F84843B020405A4100112067 /* GameRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRowCell.swift; sourceTree = "<group>"; };
 		F84843B4204074B800112067 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F84843B62040788D00112067 /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
+		F8728E9D20419116002983A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F8728E9F20419942002983A3 /* FireBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseModel.swift; sourceTree = "<group>"; };
+		F8FA179D2041A51000B45E76 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5BDA5EF13E78725FE1227B5 /* Pods_IGDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00ABB6739D34E8C404C6DB0E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4B7619C5E5A4EBBB6D972CB7 /* Pods-IGDB.debug.xcconfig */,
+				BE60256BA093B1C47FD3881B /* Pods-IGDB.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9F1F83D1E1F9AD10103D46DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F8C325FDBA819C4ED9B3D92 /* Pods_IGDB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F848438B2040387100112067 = {
 			isa = PBXGroup;
 			children = (
 				F84843962040387100112067 /* IGDB */,
 				F84843952040387100112067 /* Products */,
+				00ABB6739D34E8C404C6DB0E /* Pods */,
+				9F1F83D1E1F9AD10103D46DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +92,7 @@
 		F84843962040387100112067 /* IGDB */ = {
 			isa = PBXGroup;
 			children = (
+				F8728E9D20419116002983A3 /* GoogleService-Info.plist */,
 				F84843B22040748500112067 /* Models */,
 				F84843AD2040586800112067 /* Controllers */,
 				F84843AB2040506400112067 /* Views */,
@@ -88,6 +119,7 @@
 			children = (
 				F84843B62040788D00112067 /* GameDetailsViewController.swift */,
 				F84843AE204058C000112067 /* GameTableViewController.swift */,
+				F8FA179D2041A51000B45E76 /* NewGameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -96,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F84843B4204074B800112067 /* Game.swift */,
+				F8728E9F20419942002983A3 /* FireBaseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -107,9 +140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F84843A62040387100112067 /* Build configuration list for PBXNativeTarget "IGDB" */;
 			buildPhases = (
+				DCF50DE982C8381093BBC326 /* [CP] Check Pods Manifest.lock */,
 				F84843902040387100112067 /* Sources */,
 				F84843912040387100112067 /* Frameworks */,
 				F84843922040387100112067 /* Resources */,
+				188EED25FA8B5CDAF3F58B21 /* [CP] Embed Pods Frameworks */,
+				D2AFD046390A00D6505FB643 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F84843A22040387100112067 /* LaunchScreen.storyboard in Resources */,
+				F8728E9E20419116002983A3 /* GoogleService-Info.plist in Resources */,
 				F848439F2040387100112067 /* Assets.xcassets in Resources */,
 				F848439D2040387100112067 /* Main.storyboard in Resources */,
 			);
@@ -167,17 +204,79 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		188EED25FA8B5CDAF3F58B21 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IGDB/Pods-IGDB-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IGDB/Pods-IGDB-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2AFD046390A00D6505FB643 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IGDB/Pods-IGDB-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCF50DE982C8381093BBC326 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IGDB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F84843902040387100112067 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F84843AF204058C000112067 /* GameTableViewController.swift in Sources */,
+				F8FA179E2041A51000B45E76 /* NewGameViewController.swift in Sources */,
 				F84843B5204074B800112067 /* Game.swift in Sources */,
 				F848439A2040387100112067 /* ViewController.swift in Sources */,
 				F84843B120405A4100112067 /* GameRowCell.swift in Sources */,
 				F84843982040387100112067 /* AppDelegate.swift in Sources */,
 				F84843B72040788D00112067 /* GameDetailsViewController.swift in Sources */,
+				F8728EA020419942002983A3 /* FireBaseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,12 +411,13 @@
 		};
 		F84843A72040387100112067 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B7619C5E5A4EBBB6D972CB7 /* Pods-IGDB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IGDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.IGDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igdb.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -326,12 +426,13 @@
 		};
 		F84843A82040387100112067 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE60256BA093B1C47FD3881B /* Pods-IGDB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IGDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.IGDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igdb.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

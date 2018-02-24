@@ -2,11 +2,29 @@ import UIKit
 
 class GameTableViewController: UITableViewController {
     
-    let data: [Game] = [Game()]
+    var data: [Game] = []
+    let model: FireBaseModel = FireBaseModel()
+    @IBOutlet var tableInfoGames: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableInfoGames.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
+        model.ref?.child("Games").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let values = snapshot.value as? [String:[String:Any]] {
+                var gamesArray = [Game]()
+                for stJson in values {
+                    let game = Game(gameJson: stJson.value)
+                    gamesArray.insert(game, at: 0)
+                }
+                self.data = gamesArray
+                self.tableInfoGames.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +60,6 @@ class GameTableViewController: UITableViewController {
             let content = data[selctedRow!];
             gameViewController.game = content
         }
-        
     }
     
     var selctedRow:Int?
