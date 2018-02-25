@@ -11,10 +11,22 @@ class FireBaseModel {
         ref = Database.database().reference()
     }
     
+    func getAutoKey(table:String)->String? {
+        return self.ref?.child(table).childByAutoId().key
+    }
+    
     func getAllItemsInTable(table:String, callback:@escaping ([String:[String:Any]]?)->Void) {
         self.ref?.child(table).observeSingleEvent(of: .value, with: { (snapshot) in
             callback(snapshot.value as? [String:[String:Any]])
         })
+    }
+    
+    func addItemToTable(table:String, key:String, value:[String:Any]) {
+        self.ref?.child(table).child(key).setValue(value)
+    }
+    
+    func removeItemFromTable(table:String, key:String) {
+        self.ref?.child(table).child(key).removeValue()
     }
 
     func saveImageToFirebase(image:UIImage, name:(String),

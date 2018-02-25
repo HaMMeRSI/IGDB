@@ -86,7 +86,7 @@ class GameTableViewController: UITableViewController {
         performSegue(withIdentifier: "showDetails", sender: self)
     }
     
-    @IBAction func unwinedFromNew(segue: UIStoryboardSegue) {
+    @IBAction func unwinedToGameTable(segue: UIStoryboardSegue) {
         
     }
 }

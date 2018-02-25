@@ -33,6 +33,9 @@ class GameDetailsViewController: UIViewController {
         }
     }
     
+    let model: FireBaseModel = FireBaseModel()
+    var gameId:String?
+    
     @IBOutlet weak var GameName: UILabel!
     @IBOutlet weak var GameGenre: UILabel!
     @IBOutlet weak var GameDescription: UITextView!
@@ -47,11 +50,17 @@ class GameDetailsViewController: UIViewController {
             GameDescription.text = game.description
             GameImage.image = image
             GameScore.text = String(game.score)
+            self.gameId = game.id
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    @IBAction func deleteGame() {
+        model.removeItemFromTable(table: "Games", key: self.gameId!)
+        performSegue(withIdentifier: "unwindFromDetails", sender: nil)
     }
 }

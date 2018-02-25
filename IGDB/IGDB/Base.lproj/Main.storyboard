@@ -351,7 +351,7 @@
                         <outlet property="GamePicture" destination="MhZ-8c-P5L" id="acX-ee-6QK"/>
                         <outlet property="GameScore" destination="2WA-DD-gvV" id="T9k-db-fwd"/>
                         <outlet property="spinner" destination="7Ha-g9-thK" id="67x-dW-c1m"/>
-                        <segue destination="loD-Fb-7dD" kind="unwind" identifier="unwinedFromNew" unwindAction="unwinedFromNewWithSegue:" id="WR7-hK-rXU"/>
+                        <segue destination="loD-Fb-7dD" kind="unwind" identifier="unwinedFromNew" unwindAction="unwinedToGameTableWithSegue:" id="WR7-hK-rXU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jil-wX-1eL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -468,9 +468,11 @@
                         <outlet property="GameImage" destination="QZv-TL-C04" id="YAs-Ot-vF8"/>
                         <outlet property="GameName" destination="5NU-2Y-LjV" id="tCv-s6-Tez"/>
                         <outlet property="GameScore" destination="y3P-zh-mcz" id="Dqe-cD-OmV"/>
+                        <segue destination="Xxf-Pq-Ofa" kind="unwind" identifier="unwindFromDetails" unwindAction="unwinedToGameTableWithSegue:" id="Gvt-YC-lAy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCf-iM-l0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Xxf-Pq-Ofa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1712.8" y="107.49625187406298"/>
         </scene>

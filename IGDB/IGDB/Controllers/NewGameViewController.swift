@@ -43,7 +43,7 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.spinner.isHidden = false
         self.spinner.startAnimating()
         
-        let key: String! = model.ref?.child("Games").childByAutoId().key
+        let key: String! = model.getAutoKey(table: "Games")
         
         let newGame: Game = Game(id:key,
                                  name:self.GameName.text!,
@@ -51,8 +51,8 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
                                  score:Int(self.GameScore.text!)!,
                                  genre: self.GameGenre.text!);
         
-        model.ref?.child("Games").child(key).setValue(newGame.toJson())
-        
+        model.addItemToTable(table: "Games", key: key, value: newGame.toJson())
+
         model.saveImageToFirebase(image:self.GamePicture.image!, name: key ,callback: { (url) in
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
