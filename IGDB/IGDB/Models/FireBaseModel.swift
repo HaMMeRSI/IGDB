@@ -11,6 +11,12 @@ class FireBaseModel {
         ref = Database.database().reference()
     }
     
+    func getAllItemsInTable(table:String, callback:@escaping ([String:[String:Any]]?)->Void) {
+        self.ref?.child(table).observeSingleEvent(of: .value, with: { (snapshot) in
+            callback(snapshot.value as? [String:[String:Any]])
+        })
+    }
+
     func saveImageToFirebase(image:UIImage, name:(String),
                              callback:@escaping (String?)->Void){
         let filesRef = storageRef.child("images/"+name+".jpg")

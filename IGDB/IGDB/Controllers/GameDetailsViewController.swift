@@ -16,10 +16,6 @@ class GameDetailsViewController: UIViewController {
                     GameDescription.text = game.description
                 }
                 
-                if (GameImage != nil){
-                    GameImage.image = UIImage(named: game.image)
-                }
-                
                 if (GameScore != nil){
                     GameScore.text = String(game.score)
                 }
@@ -27,6 +23,15 @@ class GameDetailsViewController: UIViewController {
         }
     }
     
+    var image:UIImage? {
+        didSet {
+            if let image = image {
+                if (GameImage != nil){
+                    GameImage.image = image
+                }
+            }
+        }
+    }
     
     @IBOutlet weak var GameName: UILabel!
     @IBOutlet weak var GameGenre: UILabel!
@@ -40,7 +45,7 @@ class GameDetailsViewController: UIViewController {
             GameName.text = game.name
             GameGenre.text = game.genre
             GameDescription.text = game.description
-            GameImage.image = UIImage(named: game.image)
+            GameImage.image = image
             GameScore.text = String(game.score)
         }
     }

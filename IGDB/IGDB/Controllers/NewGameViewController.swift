@@ -6,14 +6,15 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var GameGenre: UITextField!
     @IBOutlet weak var GameDescription: UITextView!
     @IBOutlet weak var GameScore: UITextField!
-    @IBOutlet weak var GameImage: UITextField!
     @IBOutlet weak var GamePicture: UIImageView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let model: FireBaseModel = FireBaseModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.spinner.stopAnimating()
+        self.spinner.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -39,11 +40,13 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func saveGame(sender: UIButton) {
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
+        
         let key: String! = model.ref?.child("Games").childByAutoId().key
         
         let newGame: Game = Game(id:key,
                                  name:self.GameName.text!,
-                                 image:self.GameImage.text!,
                                  description:self.GameDescription.text!,
                                  score:Int(self.GameScore.text!)!,
                                  genre: self.GameGenre.text!);
@@ -51,7 +54,9 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
         model.ref?.child("Games").child(key).setValue(newGame.toJson())
         
         model.saveImageToFirebase(image:self.GamePicture.image!, name: key ,callback: { (url) in
-               self.performSegue(withIdentifier: "unwinedFromNew", sender: self)
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
+            self.performSegue(withIdentifier: "unwinedFromNew", sender: self)
         })
     }
 }

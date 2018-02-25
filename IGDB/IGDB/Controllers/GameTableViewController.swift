@@ -3,6 +3,7 @@ import UIKit
 class GameTableViewController: UITableViewController {
     
     var data: [Game] = []
+    var imageData: [String:UIImage] = [:]
     let model: FireBaseModel = FireBaseModel()
     @IBOutlet var tableInfoGames: UITableView!
     @IBOutlet weak var newBarButton: UIBarButtonItem!
@@ -20,18 +21,23 @@ class GameTableViewController: UITableViewController {
         self.newBarButton.isEnabled = true
         self.spinner.isHidden = false
         self.spinner.startAnimating()
-        model.ref?.child("Games").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let values = snapshot.value as? [String:[String:Any]] {
+        
+        model.getAllItemsInTable(table: "Games", callback: { (values) in
+            if let values = values {
                 var gamesArray = [Game]()
                 for stJson in values {
                     let game = Game(gameJson: stJson.value)
+                    self.model.downloadImage(name: game.id, callback: {(image) in
+                        self.imageData[game.id] = image
+                        self.tableInfoGames.reloadData()
+                    })
                     gamesArray.insert(game, at: 0)
                 }
                 self.data = gamesArray
-                self.tableInfoGames.reloadData()
             }
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
+            self.tableInfoGames.reloadData()
         })
     }
 
@@ -58,7 +64,7 @@ class GameTableViewController: UITableViewController {
 
         cell.GameName.text = content.name
         cell.GameScore.text = String(content.score)
-        cell.GameImage.image = UIImage(named: content.image)
+        cell.GameImage.image = self.imageData[content.id]
         return cell
     }
     
@@ -68,6 +74,7 @@ class GameTableViewController: UITableViewController {
             let gameViewController:GameDetailsViewController = segue.destination as! GameDetailsViewController
             let content = data[selctedRow!];
             gameViewController.game = content
+            gameViewController.image = self.imageData[content.id]
         }
     }
     
@@ -80,6 +87,6 @@ class GameTableViewController: UITableViewController {
     }
     
     @IBAction func unwinedFromNew(segue: UIStoryboardSegue) {
-//        self.newBarButton.isEnabled = true
+        
     }
 }
