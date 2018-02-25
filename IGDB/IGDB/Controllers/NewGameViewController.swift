@@ -1,12 +1,13 @@
 import UIKit
 
-class NewGameViewController: UIViewController {
+class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var GameName: UITextField!
     @IBOutlet weak var GameGenre: UITextField!
     @IBOutlet weak var GameDescription: UITextView!
     @IBOutlet weak var GameScore: UITextField!
     @IBOutlet weak var GameImage: UITextField!
+    @IBOutlet weak var GamePicture: UIImageView!
     
     let model: FireBaseModel = FireBaseModel()
     
@@ -21,6 +22,22 @@ class NewGameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func imageClick(recognizer: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        let image = info["UIImagePickerControllerEditedImage"] as? UIImage
+        self.GamePicture.image = image
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func saveGame(sender: UIButton) {
         let key: String! = model.ref?.child("Games").childByAutoId().key
         
@@ -32,10 +49,9 @@ class NewGameViewController: UIViewController {
                                  genre: self.GameGenre.text!);
         
         model.ref?.child("Games").child(key).setValue(newGame.toJson())
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func cancelSave(sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        
+        model.saveImageToFirebase(image:self.GamePicture.image!, name: key ,callback: { (url) in
+               self.performSegue(withIdentifier: "unwinedFromNew", sender: self)
+        })
     }
 }

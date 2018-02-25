@@ -5,15 +5,21 @@ class GameTableViewController: UITableViewController {
     var data: [Game] = []
     let model: FireBaseModel = FireBaseModel()
     @IBOutlet var tableInfoGames: UITableView!
+    @IBOutlet weak var newBarButton: UIBarButtonItem!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.spinner.isHidden = true
         self.tableInfoGames.dataSource = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        self.newBarButton.isEnabled = true
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
         model.ref?.child("Games").observeSingleEvent(of: .value, with: { (snapshot) in
             if let values = snapshot.value as? [String:[String:Any]] {
                 var gamesArray = [Game]()
@@ -24,6 +30,8 @@ class GameTableViewController: UITableViewController {
                 self.data = gamesArray
                 self.tableInfoGames.reloadData()
             }
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
         })
     }
 
@@ -55,6 +63,7 @@ class GameTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.newBarButton.isEnabled = false
         if (segue.identifier == "showDetails"){
             let gameViewController:GameDetailsViewController = segue.destination as! GameDetailsViewController
             let content = data[selctedRow!];
@@ -69,5 +78,8 @@ class GameTableViewController: UITableViewController {
         selctedRow = indexPath.row
         performSegue(withIdentifier: "showDetails", sender: self)
     }
-
+    
+    @IBAction func unwinedFromNew(segue: UIStoryboardSegue) {
+//        self.newBarButton.isEnabled = true
+    }
 }
