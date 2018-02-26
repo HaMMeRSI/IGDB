@@ -74,6 +74,18 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             GameScore.text = String(game.score)
             self.gameId = game.id
             
+            model.ref!.child("Comments").queryOrdered(
+                byChild: "gameId").queryEqual(
+                    toValue: gameId!).observe(.childAdded, with: { (snapshot) in
+                if let value = snapshot.value as? [String:Any] {
+                        let comment = Comment(commentJson: value)
+                        self.data.insert(comment, at: 0)
+                        self.commentTableView.insertRows(at: [IndexPath(row: 0, section: 0)],
+                                                         with: UITableViewRowAnimation.automatic)
+
+                }
+            })
+            
             commentTableView.delegate = self
             commentTableView.dataSource = self
         }
@@ -122,6 +134,7 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                                   gameId: self.gameId!,
                                   text: textField.text!,
                                   user: user)
+            self.model.addItemToTable(table: "Comments", key: key, value: comment.toJson())
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

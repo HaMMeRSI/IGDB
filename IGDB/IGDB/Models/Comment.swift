@@ -14,21 +14,21 @@ class Comment {
         self.user = user
     }
     
-    init(gameJson:[String:Any]) {
-        self.id = gameJson["id"] as! String
-        self.gameId = gameJson["gameId"] as! String
-        self.text = gameJson["text"] as! String
-        self.user = gameJson["user"] as! String
+    init(commentJson:[String:Any]) {
+        self.id = commentJson["id"] as! String
+        self.gameId = commentJson["gameId"] as! String
+        self.text = commentJson["text"] as! String
+        self.user = commentJson["user"] as! String
     }
     
     func toJson() -> [String:Any] {
-        var gameJson = [String:Any]()
-        gameJson["id"] = self.id
-        gameJson["gameId"] = self.gameId
-        gameJson["text"] = self.text
-        gameJson["user"] = self.user
+        var commentJson = [String:Any]()
+        commentJson["id"] = self.id
+        commentJson["gameId"] = self.gameId
+        commentJson["text"] = self.text
+        commentJson["user"] = self.user
         
-        return gameJson
+        return commentJson
     }
 }
 
