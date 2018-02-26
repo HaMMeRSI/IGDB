@@ -33,7 +33,7 @@ class GameDetailsViewController: UIViewController {
         }
     }
     
-    let model: FireBaseModel = FireBaseModel()
+    let model: FireBaseModel = FireBaseModel.getInstance()
     var gameId:String?
     
     @IBOutlet weak var GameName: UILabel!
@@ -41,6 +41,7 @@ class GameDetailsViewController: UIViewController {
     @IBOutlet weak var GameDescription: UITextView!
     @IBOutlet weak var GameScore: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
+    @IBOutlet weak var editGameButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,14 +54,33 @@ class GameDetailsViewController: UIViewController {
             self.gameId = game.id
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.editGameButtonItem.isEnabled = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.editGameButtonItem.isEnabled = false
+        if (segue.identifier == "editGame"){
+            let editGameViewController:EditGameViewController = segue.destination as! EditGameViewController
+            editGameViewController.game = game
+            editGameViewController.image = GameImage.image
+        }
+    }
+    
     @IBAction func deleteGame() {
-        model.removeItemFromTable(table: "Games", key: self.gameId!)
-        performSegue(withIdentifier: "unwindFromDetails", sender: nil)
+        let alert = UIAlertController(title: "Delete Game", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
+            self.model.removeItemFromTable(table: "Games", key: self.gameId!)
+            self.performSegue(withIdentifier: "unwindFromDetails", sender: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

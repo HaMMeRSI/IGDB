@@ -4,7 +4,7 @@ class GameTableViewController: UITableViewController {
     
     var data: [Game] = []
     var imageData: [String:UIImage] = [:]
-    let model: FireBaseModel = FireBaseModel()
+    let model: FireBaseModel = FireBaseModel.getInstance()
     @IBOutlet var tableInfoGames: UITableView!
     @IBOutlet weak var newBarButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -34,6 +34,8 @@ class GameTableViewController: UITableViewController {
                     gamesArray.insert(game, at: 0)
                 }
                 self.data = gamesArray
+            } else {
+                self.data.removeAll()
             }
             self.spinner.stopAnimating()
             self.spinner.isHidden = true

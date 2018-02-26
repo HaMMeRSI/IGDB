@@ -4,11 +4,43 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class FireBaseModel {
-    let ref:DatabaseReference?
-    var storageRef = Storage.storage().reference();
+    var ref:DatabaseReference?
+    var storageRef:StorageReference?
     
-    init(){
+    static var instance: FireBaseModel = FireBaseModel()
+    
+    static func getInstance()->FireBaseModel {
+        return instance
+    }
+    
+    private init() {
+        ref = nil
+        storageRef = nil
+    }
+    
+    func initRefs() {
         ref = Database.database().reference()
+        storageRef = Storage.storage().reference();
+    }
+    
+    func registerUser(email:String, password:String, callback:@escaping (User?)->Void) {
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                callback(nil)
+            } else {
+                callback(user)
+            }
+        })
+    }
+    
+    func signIn(email:String, password:String, callback:@escaping (User?)->Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                callback(nil)
+            } else {
+                callback(user)
+            }
+        }
     }
     
     func getAutoKey(table:String)->String? {
@@ -31,7 +63,7 @@ class FireBaseModel {
 
     func saveImageToFirebase(image:UIImage, name:(String),
                              callback:@escaping (String?)->Void){
-        let filesRef = storageRef.child("images/"+name+".jpg")
+        let filesRef = storageRef!.child("images/"+name+".jpg")
         if let data = UIImageJPEGRepresentation(image, 0.8) {
             filesRef.putData(data, metadata: nil) { metadata, error in
                 if (error != nil) {
@@ -45,7 +77,7 @@ class FireBaseModel {
     }
     
     func downloadImage(name:String, callback:@escaping (UIImage?)->Void) {
-        let islandRef = storageRef.child("images/"+name+".jpg")
+        let islandRef = storageRef!.child("images/"+name+".jpg")
         //let httpsReference = storage.reference(forURL: "https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg")
         islandRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if (error != nil) {

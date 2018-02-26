@@ -19,6 +19,7 @@
 		F84843B72040788D00112067 /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843B62040788D00112067 /* GameDetailsViewController.swift */; };
 		F8728E9E20419116002983A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8728E9D20419116002983A3 /* GoogleService-Info.plist */; };
 		F8728EA020419942002983A3 /* FireBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8728E9F20419942002983A3 /* FireBaseModel.swift */; };
+		F87DC6982044405300B16E26 /* EditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87DC6972044405300B16E26 /* EditGameViewController.swift */; };
 		F8FA179E2041A51000B45E76 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FA179D2041A51000B45E76 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		F84843B62040788D00112067 /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		F8728E9D20419116002983A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8728E9F20419942002983A3 /* FireBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseModel.swift; sourceTree = "<group>"; };
+		F87DC6972044405300B16E26 /* EditGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameViewController.swift; sourceTree = "<group>"; };
 		F8FA179D2041A51000B45E76 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				F84843B62040788D00112067 /* GameDetailsViewController.swift */,
 				F84843AE204058C000112067 /* GameTableViewController.swift */,
 				F8FA179D2041A51000B45E76 /* NewGameViewController.swift */,
+				F87DC6972044405300B16E26 /* EditGameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			files = (
 				F84843AF204058C000112067 /* GameTableViewController.swift in Sources */,
 				F8FA179E2041A51000B45E76 /* NewGameViewController.swift in Sources */,
+				F87DC6982044405300B16E26 /* EditGameViewController.swift in Sources */,
 				F84843B5204074B800112067 /* Game.swift in Sources */,
 				F848439A2040387100112067 /* ViewController.swift in Sources */,
 				F84843B120405A4100112067 /* GameRowCell.swift in Sources */,
