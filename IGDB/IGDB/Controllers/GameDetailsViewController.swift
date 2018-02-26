@@ -1,6 +1,26 @@
 import UIKit
 
-class GameDetailsViewController: UIViewController {
+class GameDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var data: [Comment] = []
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:CommentRowCell = tableView.dequeueReusableCell(withIdentifier: "comment_row_cell", for: indexPath) as! CommentRowCell
+        
+        let content = data[indexPath.row]
+        
+        cell.userName.text = content.user
+        cell.comment.text = content.text
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     var game:Game? {
         didSet {
             if let game = game {
@@ -42,6 +62,7 @@ class GameDetailsViewController: UIViewController {
     @IBOutlet weak var GameScore: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
     @IBOutlet weak var editGameButtonItem: UIBarButtonItem!
+    @IBOutlet weak var commentTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +73,9 @@ class GameDetailsViewController: UIViewController {
             GameImage.image = image
             GameScore.text = String(game.score)
             self.gameId = game.id
+            
+            commentTableView.delegate = self
+            commentTableView.dataSource = self
         }
     }
     
@@ -79,6 +103,25 @@ class GameDetailsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
             self.model.removeItemFromTable(table: "Games", key: self.gameId!)
             self.performSegue(withIdentifier: "unwindFromDetails", sender: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func addComment() {
+        let alert = UIAlertController(title: "New Comment", message: "Write your comment", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter comment"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { action in
+            let textField = alert.textFields![0] as UITextField
+            let key:String! = self.model.getAutoKey(table: "Comments")
+            let user:String! = self.model.connectedUser()!.email!
+            let comment = Comment(id:key,
+                                  gameId: self.gameId!,
+                                  text: textField.text!,
+                                  user: user)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

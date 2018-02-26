@@ -43,6 +43,10 @@ class FireBaseModel {
         }
     }
     
+    func connectedUser() -> User? {
+        return Auth.auth().currentUser;
+    }
+    
     func getAutoKey(table:String)->String? {
         return self.ref?.child(table).childByAutoId().key
     }
