@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1602" y="394"/>
+            <point key="canvasLocation" x="-1556" y="429"/>
         </scene>
         <!--Search-->
         <scene sceneID="Cdi-aB-wta">
@@ -122,19 +122,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CcS-F6-qCV">
-                                <rect key="frame" x="0.0" y="104" width="375" height="514"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CcS-F6-qCV">
+                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="6sP-4g-wvL">
                                     <rect key="frame" x="0.0" y="128" width="375" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="game_row_cell" rowHeight="100" id="bdi-hb-yAx" customClass="GameRowCell" customModule="IGDB" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="game_row_cell" rowHeight="100" id="bdi-hb-yAx" customClass="GameRowCell" customModule="IGDB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bdi-hb-yAx" id="h0Z-RQ-aKP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-ok-KiC">
@@ -145,13 +145,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zw8-No-b0E">
-                                                    <rect key="frame" x="111" y="-1" width="213" height="61"/>
+                                                    <rect key="frame" x="111" y="-1" width="187" height="61"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCI-wa-fPe">
-                                                    <rect key="frame" x="294" y="66" width="66" height="26"/>
+                                                    <rect key="frame" x="268" y="66" width="66" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="66" id="6Mq-EA-ZXs"/>
                                                     </constraints>
@@ -160,7 +160,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVG-uZ-QOI">
-                                                    <rect key="frame" x="226" y="68" width="52" height="21"/>
+                                                    <rect key="frame" x="200" y="68" width="52" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="yGj-G2-oNK"/>
                                                     </constraints>
@@ -187,6 +187,7 @@
                                             <outlet property="GameImage" destination="NH5-ok-KiC" id="7CS-6A-y19"/>
                                             <outlet property="GameName" destination="Zw8-No-b0E" id="PcD-ZZ-sgJ"/>
                                             <outlet property="GameScore" destination="yCI-wa-fPe" id="ecf-wI-7Nu"/>
+                                            <segue destination="5xG-9E-FtL" kind="show" identifier="showSearchDetails" id="MMl-4S-fwA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -198,7 +199,7 @@
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" placeholder="Search game" translatesAutoresizingMaskIntoConstraints="NO" id="SXw-v0-d2W">
-                                <rect key="frame" x="0.0" y="48" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -206,18 +207,19 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="SXw-v0-d2W" secondAttribute="trailing" id="CXI-ze-JeL"/>
                             <constraint firstItem="N58-bm-ihM" firstAttribute="trailing" secondItem="SXw-v0-d2W" secondAttribute="trailing" id="HfE-0r-daJ"/>
-                            <constraint firstItem="N58-bm-ihM" firstAttribute="bottom" secondItem="SXw-v0-d2W" secondAttribute="top" id="JJO-I4-XeO"/>
+                            <constraint firstItem="N58-bm-ihM" firstAttribute="bottom" secondItem="SXw-v0-d2W" secondAttribute="top" constant="-16" id="JJO-I4-XeO"/>
                             <constraint firstItem="SXw-v0-d2W" firstAttribute="trailing" secondItem="CcS-F6-qCV" secondAttribute="trailing" id="e6c-7A-qet"/>
                             <constraint firstItem="N58-bm-ihM" firstAttribute="leading" secondItem="SXw-v0-d2W" secondAttribute="leading" id="eNy-iX-fd1"/>
                             <constraint firstItem="SXw-v0-d2W" firstAttribute="leading" secondItem="uHE-EI-4WW" secondAttribute="leading" id="hY9-s3-8Wo"/>
                             <constraint firstItem="CcS-F6-qCV" firstAttribute="top" secondItem="SXw-v0-d2W" secondAttribute="bottom" id="osc-c4-GZt"/>
                             <constraint firstItem="SXw-v0-d2W" firstAttribute="leading" secondItem="CcS-F6-qCV" secondAttribute="leading" id="riy-VM-77z"/>
-                            <constraint firstItem="SXw-v0-d2W" firstAttribute="top" secondItem="uHE-EI-4WW" secondAttribute="top" constant="48" id="tDv-o5-6Za"/>
+                            <constraint firstItem="SXw-v0-d2W" firstAttribute="top" secondItem="uHE-EI-4WW" secondAttribute="top" constant="64" id="tDv-o5-6Za"/>
                             <constraint firstItem="CcS-F6-qCV" firstAttribute="bottom" secondItem="2KH-04-ABv" secondAttribute="bottom" id="y5h-Oo-yFY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2KH-04-ABv"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="cqe-Mk-COr"/>
+                    <navigationItem key="navigationItem" title="Search Games" id="kd7-vp-56n"/>
                     <connections>
                         <outlet property="searchBar" destination="SXw-v0-d2W" id="5TW-1J-5Ih"/>
                         <outlet property="searchDisplayController" destination="Skg-7m-DhW" id="gQ6-dd-ynL"/>
@@ -235,7 +237,25 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="124" y="792.95352323838085"/>
+            <point key="canvasLocation" x="917.60000000000002" y="769.56521739130437"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9lI-vH-s3f">
+            <objects>
+                <navigationController id="Hkc-Yd-h6Q" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="5tn-eO-6Iu"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yu5-uh-gKa">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hwq-Kp-5rt" kind="relationship" relationship="rootViewController" id="yMR-Eh-v58"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdX-jV-xbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="770"/>
         </scene>
         <!--Recent Games-->
         <scene sceneID="MAy-td-c6e">
@@ -331,7 +351,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Pq-vI-LwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-206"/>
+            <point key="canvasLocation" x="918" y="107"/>
         </scene>
         <!--New Game-->
         <scene sceneID="qTg-CT-C0X">
@@ -484,7 +504,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1708" y="-592.35382308845578"/>
+            <point key="canvasLocation" x="1708" y="-239"/>
         </scene>
         <!--Game Details-->
         <scene sceneID="x5J-67-zwt">
@@ -666,7 +686,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCf-iM-l0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Xxf-Pq-Ofa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1712.8" y="107.49625187406298"/>
+            <point key="canvasLocation" x="1708" y="429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="weA-Iq-aUg">
@@ -696,12 +716,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="hKI-Fr-OQC" kind="relationship" relationship="viewControllers" id="81V-tO-mPn"/>
-                        <segue destination="Hwq-Kp-5rt" kind="relationship" relationship="viewControllers" id="QAo-YT-ybJ"/>
+                        <segue destination="Hkc-Yd-h6Q" kind="relationship" relationship="viewControllers" id="Nb3-L3-Cjh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfn-d9-S3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-753" y="394"/>
+            <point key="canvasLocation" x="-673" y="429"/>
         </scene>
         <!--Edit Game-->
         <scene sceneID="MSJ-xh-BfU">
@@ -867,7 +887,10 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2488.8000000000002" y="107.49625187406298"/>
+            <point key="canvasLocation" x="2460" y="429"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Bx8-HT-Abz"/>
+    </inferredMetricsTieBreakers>
 </document>

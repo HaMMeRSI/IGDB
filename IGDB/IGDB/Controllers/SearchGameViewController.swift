@@ -59,17 +59,28 @@ class SearchGameViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-override func viewDidLoad() {
-    super.viewDidLoad()
-    self.spinner.stopAnimating()
-    self.spinner.isHidden = true
-    tableInfoGames.delegate = self
-    tableInfoGames.dataSource = self
-    searchBar.delegate = self
-}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.spinner.stopAnimating()
+        self.spinner.isHidden = true
+        tableInfoGames.delegate = self
+        tableInfoGames.dataSource = self
+        searchBar.delegate = self
+    }
 
-override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-}
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showSearchDetails"){
+            let selectedRowPath = self.tableInfoGames.indexPathForSelectedRow!
+            let gameViewController:GameDetailsViewController = segue.destination as! GameDetailsViewController
+            let content = data[selectedRowPath.row];
+            gameViewController.game = content
+            gameViewController.image = self.imageData[content.id]
+            self.tableInfoGames.deselectRow(at: selectedRowPath, animated: true)
+        }
+    }
 }

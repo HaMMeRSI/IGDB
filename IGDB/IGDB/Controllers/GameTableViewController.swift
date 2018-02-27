@@ -6,6 +6,7 @@ class GameTableViewController: UITableViewController {
     var imageData: [String:UIImage] = [:]
     let model: FireBaseModel = FireBaseModel.getInstance()
     let numberOfRecentGames:UInt = 20
+    var selctedRow:Int?
     
     @IBOutlet var tableInfoGames: UITableView!
     @IBOutlet weak var newBarButton: UIBarButtonItem!
@@ -60,10 +61,7 @@ class GameTableViewController: UITableViewController {
         }
     }
     
-    var selctedRow:Int?
-    
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        print("row \(indexPath.row) was selected")
         selctedRow = indexPath.row
         performSegue(withIdentifier: "showDetails", sender: self)
     }
