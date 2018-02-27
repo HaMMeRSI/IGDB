@@ -1,6 +1,6 @@
 import UIKit
 
-class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var GameName: UITextField!
     @IBOutlet weak var GameGenre: UITextField!
@@ -15,7 +15,8 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         self.spinner.stopAnimating()
         self.spinner.isHidden = true
-        // Do any additional setup after loading the view.
+        
+        self.GameScore.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,13 +24,24 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isStrictSuperset(of: characterSet)
+    }
+    
     @IBAction func imageClick(recognizer: UITapGestureRecognizer) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            self.spinner.isHidden = false
+            self.spinner.startAnimating()
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: {
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+            })
         }
     }
 
@@ -40,6 +52,28 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func saveGame(sender: UIButton) {
+        
+        if GameName.text == "" || GameGenre.text == "" || GameScore.text == ""
+            || GamePicture.image == nil || GameDescription.text == "" {
+            
+            let alert = UIAlertController(title: "Incorrect form",
+                                          message: "Make sure all fields are full",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let score = Int(GameScore.text!)!
+        if score < 0 || score > 100 {
+            let alert = UIAlertController(title: "Incorrect score",
+                                          message: "score has to be between 0 and 100",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         self.spinner.isHidden = false
         self.spinner.startAnimating()
         
@@ -48,12 +82,11 @@ class NewGameViewController: UIViewController, UIImagePickerControllerDelegate, 
         let newGame: Game = Game(id:key,
                                  name:self.GameName.text!,
                                  description:self.GameDescription.text!,
-                                 score:Int(self.GameScore.text!)!,
+                                 score: score,
                                  genre: self.GameGenre.text!);
-        
-        model.addItemToTable(table: "Games", key: key, value: newGame.toJson())
 
         model.saveImageToFirebase(image:self.GamePicture.image!, name: key ,callback: { (url) in
+            self.model.addItemToTable(table: "Games", key: key, value: newGame.toJson())
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
             self.performSegue(withIdentifier: "unwinedFromNew", sender: self)

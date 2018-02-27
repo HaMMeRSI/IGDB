@@ -1,6 +1,6 @@
 import UIKit
 
-class EditGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var GameName: UITextField!
     @IBOutlet weak var GameGenre: UITextField!
@@ -46,6 +46,7 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         self.spinner.stopAnimating()
         self.spinner.isHidden = true
+        GameScore.delegate = self
         if let game = game {
             GameName.text = game.name
             GameGenre.text = game.genre
@@ -60,13 +61,24 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isStrictSuperset(of: characterSet)
+    }
+    
     @IBAction func imageClick(recognizer: UITapGestureRecognizer) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            self.spinner.isHidden = false
+            self.spinner.startAnimating()
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: {
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+            })
         }
     }
     
@@ -77,6 +89,27 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func saveGame(sender: UIButton) {
+        if GameName.text == "" || GameGenre.text == "" || GameScore.text == ""
+            || GamePicture.image == nil || GameDescription.text == "" {
+            
+            let alert = UIAlertController(title: "Incorrect form",
+                                          message: "Make sure all fields are full",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let score = Int(GameScore.text!)!
+        if score < 0 || score > 100 {
+            let alert = UIAlertController(title: "Incorrect score",
+                                          message: "score has to be between 0 and 100",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         self.spinner.isHidden = false
         self.spinner.startAnimating()
         let key = self.game!.id
@@ -86,9 +119,8 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
                                  score:Int(self.GameScore.text!)!,
                                  genre: self.GameGenre.text!);
         
-        model.addItemToTable(table: "Games", key: key, value: editedGame.toJson())
-        
         model.saveImageToFirebase(image:self.GamePicture.image!, name: key ,callback: { (url) in
+            self.model.addItemToTable(table: "Games", key: key, value: editedGame.toJson())
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
             self.performSegue(withIdentifier: "unwinedFromNew", sender: self)

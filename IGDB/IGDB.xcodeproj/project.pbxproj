@@ -19,6 +19,7 @@
 		F84843B72040788D00112067 /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84843B62040788D00112067 /* GameDetailsViewController.swift */; };
 		F8728E9E20419116002983A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8728E9D20419116002983A3 /* GoogleService-Info.plist */; };
 		F8728EA020419942002983A3 /* FireBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8728E9F20419942002983A3 /* FireBaseModel.swift */; };
+		F87AB9142045C8090032CC75 /* SearchGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AB9132045C8090032CC75 /* SearchGameViewController.swift */; };
 		F87DC6982044405300B16E26 /* EditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87DC6972044405300B16E26 /* EditGameViewController.swift */; };
 		F87DC69C2044707900B16E26 /* CommentRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87DC69B2044707900B16E26 /* CommentRowCell.swift */; };
 		F87DC69E20447B8900B16E26 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87DC69D20447B8900B16E26 /* Comment.swift */; };
@@ -42,6 +43,7 @@
 		F84843B62040788D00112067 /* GameDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		F8728E9D20419116002983A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8728E9F20419942002983A3 /* FireBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseModel.swift; sourceTree = "<group>"; };
+		F87AB9132045C8090032CC75 /* SearchGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameViewController.swift; sourceTree = "<group>"; };
 		F87DC6972044405300B16E26 /* EditGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameViewController.swift; sourceTree = "<group>"; };
 		F87DC69B2044707900B16E26 /* CommentRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowCell.swift; sourceTree = "<group>"; };
 		F87DC69D20447B8900B16E26 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				F84843AE204058C000112067 /* GameTableViewController.swift */,
 				F8FA179D2041A51000B45E76 /* NewGameViewController.swift */,
 				F87DC6972044405300B16E26 /* EditGameViewController.swift */,
+				F87AB9132045C8090032CC75 /* SearchGameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				F848439A2040387100112067 /* ViewController.swift in Sources */,
 				F84843B120405A4100112067 /* GameRowCell.swift in Sources */,
 				F84843982040387100112067 /* AppDelegate.swift in Sources */,
+				F87AB9142045C8090032CC75 /* SearchGameViewController.swift in Sources */,
 				F84843B72040788D00112067 /* GameDetailsViewController.swift in Sources */,
 				F87DC69E20447B8900B16E26 /* Comment.swift in Sources */,
 				F8728EA020419942002983A3 /* FireBaseModel.swift in Sources */,

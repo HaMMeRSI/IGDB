@@ -5,42 +5,22 @@ class GameTableViewController: UITableViewController {
     var data: [Game] = []
     var imageData: [String:UIImage] = [:]
     let model: FireBaseModel = FireBaseModel.getInstance()
+    let numberOfRecentGames:UInt = 20
+    
     @IBOutlet var tableInfoGames: UITableView!
     @IBOutlet weak var newBarButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.spinner.stopAnimating()
         self.spinner.isHidden = true
-        self.tableInfoGames.dataSource = self
-        
+        self.addObservers()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.newBarButton.isEnabled = true
-        self.spinner.isHidden = false
-        self.spinner.startAnimating()
-        
-        model.getAllItemsInTable(table: "Games", callback: { (values) in
-            if let values = values {
-                var gamesArray = [Game]()
-                for stJson in values {
-                    let game = Game(gameJson: stJson.value)
-                    self.model.downloadImage(name: game.id, callback: {(image) in
-                        self.imageData[game.id] = image
-                        self.tableInfoGames.reloadData()
-                    })
-                    gamesArray.insert(game, at: 0)
-                }
-                self.data = gamesArray
-            } else {
-                self.data.removeAll()
-            }
-            self.spinner.stopAnimating()
-            self.spinner.isHidden = true
-            self.tableInfoGames.reloadData()
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,5 +70,65 @@ class GameTableViewController: UITableViewController {
     
     @IBAction func unwinedToGameTable(segue: UIStoryboardSegue) {
         
+    }
+    
+    private func addObservers() {
+        model.ref!.child("Games").queryLimited(toLast: numberOfRecentGames).observe(.childAdded, with: { (snapshot) in
+            self.spinner.isHidden = false
+            self.spinner.startAnimating()
+            if let value = snapshot.value as? [String:Any] {
+                let game = Game(gameJson: value)
+                self.model.downloadImage(name: game.id, callback: {(image) in
+                    self.imageData[game.id] = image
+                    self.data.insert(game, at: 0)
+                    self.tableInfoGames.insertRows(at: [IndexPath(row: 0, section: 0)],
+                                                   with: UITableViewRowAnimation.automatic)
+                    self.spinner.stopAnimating()
+                    self.spinner.isHidden = true
+                })
+            }
+        })
+        
+        model.ref!.child("Games").queryLimited(toLast: numberOfRecentGames).observe(.childRemoved, with: { (snapshot) in
+            if let value = snapshot.value as? [String:Any] {
+                let game = Game(gameJson: value)
+                if self.imageData.keys.contains(game.id) {
+                    self.imageData.removeValue(forKey: game.id)
+                }
+                
+                let index = self.data.index(where: { (curr) -> Bool in
+                    return curr.id == game.id
+                })
+
+                if index != nil {
+                    self.data.remove(at: index!)
+                    self.tableInfoGames.deleteRows(at: [IndexPath(row: index!, section: 0)],
+                                                   with: UITableViewRowAnimation.automatic)
+                }
+            }
+        })
+        
+        model.ref!.child("Games").queryLimited(toLast: numberOfRecentGames).observe(.childChanged, with: { (snapshot) in
+            self.spinner.isHidden = false
+            self.spinner.startAnimating()
+            if let value = snapshot.value as? [String:Any] {
+                let game = Game(gameJson: value)
+                self.model.downloadImage(name: game.id, callback: {(image) in
+                    let index = self.data.index(where: { (curr) -> Bool in
+                        return curr.id == game.id
+                    })
+                    
+                    if index != nil {
+                        self.imageData[game.id] = image
+                        self.data[index!] = game
+                        self.tableInfoGames.reloadRows(at: [IndexPath(row: index!, section: 0)],
+                                                       with: UITableViewRowAnimation.automatic)
+                    }
+                    
+                    self.spinner.stopAnimating()
+                    self.spinner.isHidden = true
+                })
+            }
+        })
     }
 }
