@@ -42,6 +42,8 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
+    var isFromSearch:Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.spinner.stopAnimating()
@@ -123,7 +125,8 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
             self.model.addItemToTable(table: "Games", key: key, value: editedGame.toJson())
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
-            self.performSegue(withIdentifier: "unwinedFromNew", sender: self)
+            
+            self.unwined()
         })
     }
     
@@ -131,10 +134,23 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
         let alert = UIAlertController(title: "Delete Game", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
             self.model.removeItemFromTable(table: "Games", key: self.game!.id)
-            self.performSegue(withIdentifier: "unwinedFromNew", sender: nil)
+            self.unwined()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func unwined() {
+        var toSearch = false;
+        if let isFromSearch = self.isFromSearch {
+            toSearch = isFromSearch
+        }
+        
+        if toSearch {
+            self.performSegue(withIdentifier: "unwinedToSearch", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "unwinedToRecents", sender: self)
+        }
     }
 }
 

@@ -876,7 +876,8 @@
                         <outlet property="GamePicture" destination="2P8-ug-aaD" id="SBk-Bl-ds1"/>
                         <outlet property="GameScore" destination="6eF-sM-lOg" id="Tjm-FP-QFa"/>
                         <outlet property="spinner" destination="Dwt-gf-rWS" id="aro-W4-PZE"/>
-                        <segue destination="cxm-TQ-emY" kind="unwind" identifier="unwinedFromNew" unwindAction="unwinedToGameTableWithSegue:" id="UiO-hu-f6a"/>
+                        <segue destination="cxm-TQ-emY" kind="unwind" identifier="unwinedToRecents" unwindAction="unwinedToGameTableWithSegue:" id="UiO-hu-f6a"/>
+                        <segue destination="cxm-TQ-emY" kind="unwind" identifier="unwinedToSearch" unwindAction="unwinedToSearchWithSegue:" id="4wZ-fy-LgU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ml-Gr-x8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -891,6 +892,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Bx8-HT-Abz"/>
+        <segue reference="MMl-4S-fwA"/>
     </inferredMetricsTieBreakers>
 </document>

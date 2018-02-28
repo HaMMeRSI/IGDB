@@ -55,6 +55,7 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     let model: FireBaseModel = FireBaseModel.getInstance()
     var gameId:String?
+    var isFromSearch:Bool?
     
     @IBOutlet weak var GameName: UILabel!
     @IBOutlet weak var GameGenre: UILabel!
@@ -107,6 +108,7 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             let editGameViewController:EditGameViewController = segue.destination as! EditGameViewController
             editGameViewController.game = game
             editGameViewController.image = GameImage.image
+            editGameViewController.isFromSearch = self.isFromSearch
         }
     }
     
