@@ -75,9 +75,7 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             GameScore.text = String(game.score)
             self.gameId = game.id
             
-            model.ref!.child("Comments").queryOrdered(
-                byChild: "gameId").queryEqual(
-                    toValue: gameId!).observe(.childAdded, with: { (snapshot) in
+            model.ref!.child("Games/\(gameId!)/Comments").observe(.childAdded, with: { (snapshot) in
                 if let value = snapshot.value as? [String:Any] {
                         let comment = Comment(commentJson: value)
                         self.data.insert(comment, at: 0)
@@ -130,13 +128,13 @@ class GameDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         alert.addAction(UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { action in
             let textField = alert.textFields![0] as UITextField
-            let key:String! = self.model.getAutoKey(table: "Comments")
+            let key:String! = self.model.getAutoKey(table: "Games/\(self.gameId!)/Comments")
             let user:String! = self.model.connectedUser()!.email!
             let comment = Comment(id:key,
                                   gameId: self.gameId!,
                                   text: textField.text!,
                                   user: user)
-            self.model.addItemToTable(table: "Comments", key: key, value: comment.toJson())
+            self.model.addItemToTable(table: "Games/\(self.gameId!)/Comments", key: key, value: comment.toJson())
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

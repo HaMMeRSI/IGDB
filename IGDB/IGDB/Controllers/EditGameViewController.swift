@@ -134,6 +134,7 @@ class EditGameViewController: UIViewController, UIImagePickerControllerDelegate,
         let alert = UIAlertController(title: "Delete Game", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
             self.model.removeItemFromTable(table: "Games", key: self.game!.id)
+            self.model.removeImage(name: self.game!.id)
             self.unwined()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))

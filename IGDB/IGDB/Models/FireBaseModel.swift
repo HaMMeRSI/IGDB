@@ -82,7 +82,6 @@ class FireBaseModel {
     
     func downloadImage(name:String, callback:@escaping (UIImage?)->Void) {
         let islandRef = storageRef!.child("images/"+name+".jpg")
-        //let httpsReference = storage.reference(forURL: "https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg")
         islandRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if (error != nil) {
                 callback(nil)
@@ -91,6 +90,11 @@ class FireBaseModel {
                 let image = UIImage(data: data!)
                 callback(image)
             }
+        }
+    }
+    
+    func removeImage(name:String) {
+        storageRef!.child("images/"+name+".jpg").delete { (error) in
         }
     }
 }
